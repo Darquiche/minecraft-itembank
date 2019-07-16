@@ -23,10 +23,12 @@ public class Gui implements Listener {
     private ItemStack v1, v2, v3, v4, v5, v6, v7, v8, v9;
     private int i1, i2, i3, i4, i5, i6, i7, i8, i9;
 
+    private String withdrawTitle = "Withdraw";
+
     private Material curr = Material.matchMaterial(ItemBank.ibCurrency); //convert string to material
 
     public Gui(Plugin p, int val1, int val2, int val3, int val4, int val5, int val6, int val7, int val8, int val9) {
-        inv = Bukkit.getServer().createInventory(null, 9, "Withdraw");
+        inv = Bukkit.getServer().createInventory(null, 9, withdrawTitle);
 
         i1 = val1;
         i2 = val2;
@@ -61,41 +63,6 @@ public class Gui implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, p);
     }
 
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent e) {
-        //if (!e.getInventory().getName().equalsIgnoreCase(inv.getName())) return;
-        if (e.getCurrentItem() == null) return; //no action if click outside
-        if (e.getCurrentItem().getItemMeta() == null) return; //no action if click on a empty box
-        if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 1")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i1);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 2")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i2);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 3")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i3);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 4")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i4);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 5")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i5);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 6")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i6);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 7")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i7);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 8")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i8);
-        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 9")) {
-            e.setCancelled(true);
-            givePlayer((Player) e.getWhoClicked(), i9);
-        }
-    }
-
     private ItemStack createItem(DyeColor dc, String name, int v) {
         ItemStack i = new Wool(dc).toItemStack(1);
         ItemMeta im = i.getItemMeta();
@@ -103,6 +70,11 @@ public class Gui implements Listener {
         im.setLore(Arrays.asList(String.format("Receive %s", v)));
         i.setItemMeta(im);
         return i;
+    }
+
+
+    public void show(Player p) {
+        p.openInventory(inv);
     }
 
     private void givePlayer(Player p, int money) {
@@ -143,6 +115,41 @@ public class Gui implements Listener {
             }
         }
         return check;
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        if (!e.getView().getTitle().equalsIgnoreCase(withdrawTitle)) return;
+        if (e.getCurrentItem() == null) return; //no action if click outside
+        if (e.getCurrentItem().getItemMeta() == null) return; //no action if click on a empty box
+        if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 1")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i1);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 2")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i2);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 3")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i3);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 4")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i4);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 5")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i5);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 6")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i6);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 7")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i7);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 8")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i8);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 9")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i9);
+        }
     }
 
 }
