@@ -7,7 +7,7 @@ No **commands** !
 ***
 
 ***
-:info: v0.3 is for SPIGOT 1.14.3
+:star: v0.3 is for SPIGOT 1.14.3
 ***
 
 ## Features
