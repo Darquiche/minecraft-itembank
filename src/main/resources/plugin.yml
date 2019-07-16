@@ -1,0 +1,87 @@
+name: ItemBank
+version: 0.3
+author: Darqi
+main: fr.darqi.itembank.ItemBank
+website: http://darqi.fr
+
+commands:
+  ib:
+    description: Shows ItemBank's help message.
+    aliases: [itembank, itemb, ibank]
+    permission: itembank.commands.ib
+    usage: /ib
+
+permissions:
+
+  itembank.*:
+    description: Gives full access to ItemBank
+    children:
+      itembank.use.*: true
+      itembank.commands.*: true
+
+  itembank.use.*:
+    description: Gives access to all ItemBank actions
+    children:
+      itembank.use.click: true
+      itembank.use.sign.deposit: true
+      itembank.use.sign.withdraw: true
+
+  itembank.use.click:
+    description: Allows you to deposit on click.
+    default: true
+
+  itembank.use.sign.*:
+    description: Gives access to all ItemBank sign commands
+    children:
+      itembank.use.sign.deposit: true
+      itembank.use.sign.withdraw: true
+      itembank.use.sign.atm: true
+
+  itembank.use.sign.deposit:
+    description: Allows you to deposit on sign.
+    default: true
+
+  itembank.use.sign.withdraw:
+    description: Allows you to withdraw on sign.
+    default: true
+
+  itembank.use.sign.atm:
+    description: Allows you to use atm signs.
+    default: true
+
+  itembank.create.*:
+    description: Gives access to all ItemBank creation commands
+    children:
+      itembank.create.sign.deposit: true
+      itembank.create.sign.withdraw: true
+      itembank.create.sign.atm: true
+
+  itembank.create.sign.deposit:
+    description: Allows you to create deposit signs.
+    default: op
+
+  itembank.create.sign.withdraw:
+    description: Allows you to create deposit signs.
+    default: op
+
+  itembank.create.sign.atm:
+    description: Allows you to create atm signs.
+    default: op
+
+  itembank.break.sign:
+    description: Allows you to break itembank signs.
+    default: op
+
+  itembank.commands.*:
+    description: Gives access to all ItemBank commands
+    children:
+      itembank.commands.ib: true
+      itembank.commands.ib.admin: true
+
+  itembank.commands.ib:
+    description: Allows you access /ib command.
+    default: true
+
+  itembank.commands.ib.admin:
+    description: Allows you access /ib admin.
+    default: op
