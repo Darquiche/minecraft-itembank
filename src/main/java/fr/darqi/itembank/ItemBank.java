@@ -15,7 +15,7 @@ public class ItemBank extends JavaPlugin implements Listener {
     private static final Logger log = Logger.getLogger("Minecraft");
     private FileConfiguration config = getConfig();
 
-    private Gui menu;
+    static Gui menu;
 
     static String name;
     static String version;
