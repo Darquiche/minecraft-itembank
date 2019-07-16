@@ -6,6 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,7 +17,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
 
-public class Gui {
+public class Gui implements Listener {
 
     private Inventory inv;
     private ItemStack v1, v2, v3, v4, v5, v6, v7, v8, v9;
@@ -55,9 +58,43 @@ public class Gui {
         inv.setItem(7, v8);
         inv.setItem(8, v9);
 
-        //Bukkit.getServer().getPluginManager().registerEvents(this, p);
+        Bukkit.getServer().getPluginManager().registerEvents(this, p);
     }
 
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        //if (!e.getInventory().getName().equalsIgnoreCase(inv.getName())) return;
+        if (e.getCurrentItem() == null) return; //no action if click outside
+        if (e.getCurrentItem().getItemMeta() == null) return; //no action if click on a empty box
+        if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 1")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i1);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 2")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i2);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 3")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i3);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 4")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i4);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 5")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i5);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 6")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i6);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 7")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i7);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 8")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i8);
+        } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Withdraw: Option 9")) {
+            e.setCancelled(true);
+            givePlayer((Player) e.getWhoClicked(), i9);
+        }
+    }
 
     private ItemStack createItem(DyeColor dc, String name, int v) {
         ItemStack i = new Wool(dc).toItemStack(1);

@@ -15,6 +15,8 @@ public class ItemBank extends JavaPlugin implements Listener {
     private static final Logger log = Logger.getLogger("Minecraft");
     private FileConfiguration config = getConfig();
 
+    private Gui menu;
+
     static String name;
     static String version;
     static String author;
@@ -77,10 +79,10 @@ public class ItemBank extends JavaPlugin implements Listener {
         }
         log.info(String.format("[%s] Economy method: [%s] found.", name, econ.getName()));
 
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(evn, this);
         this.getCommand("ib").setExecutor(new Commands());
 
-        //menu = new GUI(this, ibWdValue1, ibWdValue2, ibWdValue3, ibWdValue4, ibWdValue5, ibWdValue6, ibWdValue7, ibWdValue8, ibWdValue9);
+        menu = new Gui(this, ibWdValue1, ibWdValue2, ibWdValue3, ibWdValue4, ibWdValue5, ibWdValue6, ibWdValue7, ibWdValue8, ibWdValue9);
     }
 
     private boolean setupEconomy() {
