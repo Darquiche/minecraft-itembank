@@ -82,7 +82,7 @@ public class EventHelper implements Listener {
             return;
         }
         if (bank != null && !bank.equals("")) {
-            p.sendMessage(String.format(ChatColor.AQUA + "You have just deposited all your %s in " + bank + ".\nDeposited: " + ChatColor.RESET + "%s\n" + ChatColor.AQUA + "Your account: " + ChatColor.RESET + "%s", ItemBank.ibCurrency, ItemBank.econ.format(r.amount), ItemBank.econ.format(r.balance)));
+            p.sendMessage(String.format(ChatColor.AQUA + "You have just deposited all your %s in " + bank + ChatColor.AQUA + ".\nDeposited: " + ChatColor.RESET + "%s\n" + ChatColor.AQUA + "Your account: " + ChatColor.RESET + "%s", ItemBank.ibCurrency, ItemBank.econ.format(r.amount), ItemBank.econ.format(r.balance)));
         } else {
             p.sendMessage(String.format(ChatColor.AQUA + "You have just deposited all your %s.\nDeposited: " + ChatColor.RESET + "%s\n" + ChatColor.AQUA + "Your account: " + ChatColor.RESET + "%s", ItemBank.ibCurrency, ItemBank.econ.format(r.amount), ItemBank.econ.format(r.balance)));
         }
@@ -137,7 +137,7 @@ public class EventHelper implements Listener {
                 //withdraw sign
                 if (p.hasPermission("itembank.use.sign.withdraw")) {
                     //TODO: fix gui
-                    //ItemBank.menu.show(p);
+                    ItemBank.menu.show(p);
                 }
             } else if (ChatColor.stripColor(sign.getLine(0)).equals("[ATM]")) {
                 //atm sign
@@ -161,7 +161,7 @@ public class EventHelper implements Listener {
                         } else if (ChatColor.stripColor(sign.getLine(1)).equals("[WITHDRAW]")) {
                             if (p.hasPermission("itembank.use.sign.withdraw")) {
                                 //TODO: fix gui
-                                //menu.show(p);
+                                ItemBank.menu.show(p);
                             }
                         }
                     }
